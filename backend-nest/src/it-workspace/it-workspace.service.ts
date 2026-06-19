@@ -1,7 +1,13 @@
 import { Injectable, BadRequestException, NotFoundException } from '@nestjs/common';
 import { Pool } from 'pg';
 
-const pool = new Pool({ connectionString: process.env.DATABASE_URL });
+const pool = new Pool({
+  host: 'localhost',
+  port: 5432,
+  user: 'postgres',
+  password: 'postgres',
+  database: 'spoton_challenge',
+});
 
 const VALID_TRANSITIONS: Record<string, string[]> = {
   backlog: ['planned'],
@@ -41,7 +47,7 @@ export class ItWorkspaceService {
     const result = await pool.query(
       `INSERT INTO work_items (title, description, type, status, priority, assignee, due_date, created_by)
        VALUES ($1,$2,$3,'backlog',$4,$5,$6,$7) RETURNING *`,
-      [title, description, type || 'feature', priority || 'medium', assignee, due_date, user.email]
+      [title, description, type || 'feature', priority || 'medium', assignee, due_date || null, user.email]
     );
     return result.rows[0];
   }
