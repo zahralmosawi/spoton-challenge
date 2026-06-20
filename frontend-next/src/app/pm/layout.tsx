@@ -13,6 +13,7 @@ export default function PmLayout({ children }: { children: React.ReactNode }) {
         <div className="brand">SpotOn Project Engine</div>
         <nav className="nav">
           <Link href="/pm/it-workspace">IT Workspace</Link>
+          <Link href="/pm/releases">Releases</Link>
           <Link href="/pm/score">Score</Link>
           <button
             onClick={() => {
