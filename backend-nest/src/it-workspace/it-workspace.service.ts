@@ -62,7 +62,7 @@ export class ItWorkspaceService {
        VALUES ($1,$2,$3,'backlog',$4,$5,$6,$7) RETURNING *`,
       [title, description, type || 'feature', priority || 'medium', assignee, due_date || null, user.email]
     );
-    await this.awardScore(user.email, result.rows[0].id, 'create_work_item', 1);
+    await this.awardScore(user.email, result.rows[0].id, 'Work Item Created', 1);
     return result.rows[0];
   }
 
@@ -96,10 +96,10 @@ export class ItWorkspaceService {
       [body.title, body.description, body.type, body.status, body.priority, body.assignee, body.due_date, id]
     );
     if (body.status === 'qa') {
-      await this.awardScore('system', id, 'move_to_qa', 1);
+      await this.awardScore('system', id, 'Moved to QA', 1);
     }
     if (body.status === 'ready_for_release') {
-      await this.awardScore('system', id, 'move_to_ready', 2);
+      await this.awardScore('system', id, 'Ready for Release', 2);
     }
     return result.rows[0];
   }
@@ -141,7 +141,7 @@ export class ItWorkspaceService {
     );
     if (!result.rows[0]) throw new NotFoundException('QA check not found');
     if (body.status === 'passed') {
-      await this.awardScore('system', checkId, 'qa_check_passed', 1);
+      await this.awardScore('system', checkId, 'QA Check Passed', 1);
     }
     return result.rows[0];
   }
@@ -195,7 +195,7 @@ export class ItWorkspaceService {
       `UPDATE work_items SET status = 'released', updated_at = NOW()
        WHERE id IN (SELECT work_item_id FROM release_work_items WHERE release_id = $1)`, [releaseId]
     );
-    await this.awardScore('system', releaseId, 'deploy_release', 3);
+    await this.awardScore('system', releaseId, 'Release Deployed', 3);
     return { message: 'Release deployed successfully' };
   }
 
