@@ -12,6 +12,7 @@
 | 3 — QA Checks | ✅ Complete |
 | 4 — Release Notes | ✅ Complete |
 | 5 — Score, Tests, Polish | ✅ Complete |
+| 6 — Creative Feature| ✅ Complete |
 
 ## Setup Instructions
 
