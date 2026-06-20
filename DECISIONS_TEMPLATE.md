@@ -89,3 +89,17 @@ With more time I would:
 - Add user management beyond the single seeded intern account
 - Add release notes editor with rich text
 - Add a Kanban board view as an alternative to the list view
+
+## Creative Feature — Release Readiness Board
+
+I built a Release Readiness Board that answers the question every engineering team asks before a release: "What can we actually ship right now, and what is still blocking us?"
+
+**What it shows:**
+- Every active work item with a READY, BLOCKED, or AT RISK badge
+- Exactly what is blocking each item (no QA checks, failed tests, no assignee, past due date)
+- A risk score so the most critical items appear first
+- A QA progress bar per item
+
+**Why this feature:** Instead of making engineers manually check each item's status, the board gives an instant visual overview of release health. It's the kind of tool a real engineering team would actually open before every sprint review.
+
+**How it works:** The page fetches all work items and their QA checks in parallel, then calculates blockers and risk scores entirely on the frontend. No extra backend endpoints needed.
