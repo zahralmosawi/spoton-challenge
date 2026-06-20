@@ -1,8 +1,7 @@
 # SpotOn IT Delivery Workspace — Submission
 
 ## Demo Video
-[Watch the demo video](#) ← replace this link after recording
-
+[Watch the demo video](https://drive.google.com/drive/folders/1K8zMVnWZIG3ioNpYYjU_l0-br-VifVM6?usp=share_link)
 ## Implementation Status
 
 | Level | Status |
